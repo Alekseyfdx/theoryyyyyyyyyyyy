@@ -13,6 +13,11 @@
   --card-border: rgba(255, 255, 255, 0.18);
   --shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   --radius: 16px;
+
+  /* NEW: Define RGB components for --accent to be used in rgba() */
+  --accent-r: 16;
+  --accent-g: 185;
+  --accent-b: 129;
 }
 
 /* Base styles */
@@ -234,8 +239,9 @@ body {
 /* Explanation Section */
 .explanation {
   margin-top: 16px;
-  background: rgba(var(--accent-rgb), 0.1); /* Using rgba for accent color */
-  border: 1px solid rgba(var(--accent-rgb), 0.3);
+  /* Corrected usage of RGB variables */
+  background: rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.1); 
+  border: 1px solid rgba(var(--accent-r), var(--accent-g), var(--accent-b), 0.3);
   border-radius: 12px;
   padding: 0;
   overflow: hidden;
