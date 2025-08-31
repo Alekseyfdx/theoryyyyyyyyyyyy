@@ -1,26 +1,31 @@
 // Pilot Theory Trainer — יוליה ✈️
+
 const DATA_URL = 'questions.json';
 const GEMINI_API_KEY = 'AIzaSyDYGe_wmTgu8hszDhnLB2qlEz5l-fKtscM';
 const GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
-// === State ===
+// === Состояние ===
 let questions = [];
 let index = 0;
 let filtered = null;
 
-// === DOM ===
+// === Быстрый доступ к DOM ===
 const $ = id => document.getElementById(id);
+
+// Загружаем вопросы при старте
+window.onload = loadQuestions;
 
 function loadQuestions() {
   fetch(DATA_URL)
-    .then(r => r.json())
+    .then(res => res.json())
     .then(data => {
       questions = data.questions || [];
-      show(index);
-    });
+      showQuestion(index);
+    })
+    .catch(err => console.error('Ошибка загрузки questions.json:', err));
 }
 
-function show(i) {
+function showQuestion(i) {
   const arr = filtered || questions;
   if (!arr[i]) return;
   const q = arr[i];
@@ -34,53 +39,69 @@ function show(i) {
 }
 
 $('prevBtn').onclick = () => {
-  if (index > 0) { index--; show(index); }
+  if (index > 0) index--;
+  showQuestion(index);
 };
+
 $('nextBtn').onclick = () => {
   const arr = filtered || questions;
-  if (index < arr.length - 1) { index++; show(index); }
+  if (index < arr.length - 1) index++;
+  showQuestion(index);
 };
+
 $('goToBtn').onclick = () => {
   const n = parseInt($('pageInput').value, 10) - 1;
   const arr = filtered || questions;
-  if (n >= 0 && n < arr.length) { index = n; show(index); }
+  if (!isNaN(n) && n >= 0 && n < arr.length) {
+    index = n;
+    showQuestion(index);
+  }
 };
 
 $('searchBtn').onclick = () => {
   const val = $('searchInput').value.trim();
-  if (!val) { filtered = null; index = 0; show(index); return; }
-  filtered = questions.filter(q => q.question.includes(val) || (q.answer && q.answer.includes(val)));
+  if (!val) filtered = null;
+  else {
+    filtered = questions.filter(q =>
+      q.question.includes(val) ||
+      (q.answer && q.answer.includes(val))
+    );
+  }
   index = 0;
-  show(index);
+  showQuestion(index);
 };
 
 $('explanationBtn').onclick = async () => {
   const arr = filtered || questions;
   const q = arr[index];
-  $('explanation').setAttribute('aria-hidden', 'false');
-  $('explanationText').textContent = '🤖 שולף הסבר...';
+  if (!q) return;
 
-  // Gemini API integration
+  $('explanation').removeAttribute('aria-hidden');
+  $('explanationText').textContent = '🤖 שולף הסבר...';
+  $('explanationSource').textContent = '';
+
   try {
-    const prompt = `הסבר בקצרה (עד 5 שורות) לשאלה במבחן תיאוריה לטייס בישראל: \n"${q.question}"\nתשובה נכונה: ${q.answer}\nהסבר:`;
-    const res = await fetch(GEMINI_ENDPOINT + '?key=' + AIzaSyDYGe_wmTgu8hszDhnLB2qlEz5l-fKtscM, {
+    const prompt = `הסבר בקצרה (עד 5 שורות) לשאלה במבחן תיאוריה לטייס בישראל:\n"${q.question}"\nתשובה נכונה: ${q.answer}\nהסבר:`;
+    const url = `${GEMINI_ENDPOINT}?key=${GEMINI_API_KEY}`;
+
+    const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [
-          { parts: [ { text: prompt } ] }
-        ]
+        contents: [{ parts: [{ text: prompt }] }]
       })
     });
-    if (!res.ok) throw new Error(await res.text());
-    const out = await res.json();
-    const expl = out.candidates?.[0]?.content?.parts?.[0]?.text || 'לא התקבל הסבר.';
+
+    if (!res.ok) {
+      const txt = await res.text();
+      throw new Error(`Ошибка от API: ${txt}`);
+    }
+
+    const data = await res.json();
+    const expl = data.candidates?.[0]?.content?.parts?.[0]?.text || 'לא התקבל הסבר.';
     $('explanationText').textContent = expl;
     $('explanationSource').textContent = 'נוצר אוטומטית ב־Gemini AI';
   } catch (e) {
-    $('explanationText').textContent = 'שגיאה בשליפת הסבר מ־Gemini: ' + (e.message || e);
-    $('explanationSource').textContent = '';
+    $('explanationText').textContent = 'שגיאה בשליפת הסבר: ' + e.message;
   }
 };
-
-window.onload = loadQuestions;
