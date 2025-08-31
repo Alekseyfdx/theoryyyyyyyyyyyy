@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תרגול תיאוריה - חוקת אוויר</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>תרגול חוקת אוויר</h1>
+            <div class="theme-switcher">
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span id="theme-icon">☀️</span>
+            </div>
+        </header>
+
+        <main class="card">
+            <div id="question-container">
+                <p id="question-text">טוען שאלה...</p>
+            </div>
+            <div id="answer-container">
+                <p id="answer-text"></p>
+            </div>
+            <button id="explain-btn" class="btn explain-btn" disabled>הסבר</button>
+            <div id="explanation-card" class="explanation-card hidden">
+                <p id="explanation-text"></p>
+            </div>
+        </main>
+
+        <footer>
+            <p id="progress-text">שאלה 0 מתוך 0</p>
+            <button id="next-btn" class="btn next-btn" disabled>השאלה הבאה</button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
