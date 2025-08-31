@@ -1,24 +1,88 @@
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: 'Rubik', sans-serif;
-  background: radial-gradient(1200px 800px at 10% 0%, rgba(110,36,210,0.35), transparent 60%), radial-gradient(1000px 800px at 100% 100%, rgba(14,165,233,0.35), transparent 60%), linear-gradient(180deg, #0f172a, #1e293b);
-  color:#eef2ff; line-height:1.6; direction:rtl;
+/* ===== THEME ===== */
+:root {
+  --bg1:#0f172a; --bg2:#1e293b; --text:#eef2ff; --muted:#cbd5e1;
+  --primary:#3b82f6; --primary-600:#2563eb; --accent:#10b981;
+  --outline:#334155; --shadow:0 15px 35px rgba(0,0,0,.25); --radius:16px;
 }
-.container { max-width:1080px; margin:0 auto; padding:0 16px; }
-/* Ответ */
-.answer {
-  margin:28px 0; padding:28px 16px; font-size:2em; font-weight:700;
-  background: linear-gradient(95deg, rgba(18,30,65,0.5) 72%, rgba(16,185,129,0.15) 100%);
-  border-radius:20px; box-shadow:0 4px 22px rgba(59,130,246,0.14);
-  text-align:right; line-height:2.2; word-break:break-word;
+*{box-sizing:border-box} html,body{height:100%}
+body{
+  margin:0; color:var(--text);
+  font-family:'Rubik',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  background:
+    radial-gradient(1200px 800px at 10% 0%, rgba(110,36,210,.35), transparent 60%),
+    radial-gradient(1000px 800px at 100% 100%, rgba(14,165,233,.35), transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+  line-height:1.6; direction:rtl; text-align:right;
 }
-.explanation {
-  margin-top:20px; padding:18px 14px; font-size:1.1em;
-  background: linear-gradient(95deg, rgba(16,185,129,0.15) 40%, rgba(59,130,246,0.06) 100%);
-  border-radius:14px; box-shadow:0 2px 12px rgba(16,185,129,0.1); line-height:1.8;
+.container{width:min(1080px,92%); margin-inline:auto}
+
+/* A11y */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* Header */
+.app-header{position:sticky;top:0;z-index:10;backdrop-filter:saturate(140%) blur(10px);
+  background:linear-gradient(to bottom, rgba(15,23,42,.85), rgba(15,23,42,.6)); border-bottom:1px solid var(--outline)}
+.header-content{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{display:flex;gap:10px;align-items:center}
+.brand-logo{font-size:1.25rem}
+.brand-text{font-weight:700;letter-spacing:.3px}
+.counter-section{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.counter{color:var(--muted);font-size:.95rem}
+.page-nav{display:flex;gap:6px;align-items:center}
+.page-input{width:70px;background:rgba(255,255,255,.08);color:var(--text);
+  border:1px solid var(--outline);border-radius:8px;padding:6px 8px;font-size:.9rem;text-align:center}
+.page-input::placeholder{color:#94a3b8;font-size:.85rem}
+
+/* Main */
+.app-main{padding:24px 0 36px;display:flex;flex-direction:column;gap:16px}
+
+/* Search */
+.search{display:flex;gap:10px}
+.search input{flex:1;background:rgba(255,255,255,.06);color:var(--text);
+  border:1px solid var(--outline);border-radius:12px;padding:12px 14px}
+.search input::placeholder{color:#94a3b8}
+
+/* Buttons */
+.btn{border:0;border-radius:12px;padding:12px 18px;cursor:pointer;font-weight:700;
+  transition:transform .08s, box-shadow .2s, background .2s, filter .2s}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-600));color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.35)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-outline{background:transparent;color:#fff;border:1px solid var(--outline)}
+.btn-outline:hover{background:rgba(255,255,255,.05)}
+.btn-small{padding:6px 12px;font-size:.9rem}
+
+/* Card */
+.card{border-radius:var(--radius);padding:22px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+
+/* Question */
+.question{font-size:clamp(1.1rem, 2.4vw, 1.6rem);font-weight:700}
+
+/* ===== BIG, READABLE ANSWER ===== */
+.answer{
+  margin:28px 0 18px; padding:28px 14px;
+  font-size:clamp(1.6rem, 5vw, 2.6rem); /* огромный на телефоне */
+  font-weight:800; line-height:2.1; letter-spacing:.25px;
+  background:linear-gradient(96deg, rgba(18,30,65,.50) 72%, rgba(16,185,129,.15) 100%);
+  border-radius:20px; color:#fff; word-break:break-word; text-align:right;
+  box-shadow:0 4px 22px rgba(59,130,246,.14);
 }
-/* Адаптив */
-@media (max-width:600px) {
-  .answer { font-size:2.5em; padding:24px 12px; }
-  .explanation { font-size:1.2em; padding:16px 10px; }
+
+/* AI */
+.explanation-btn{margin-top:6px;background:linear-gradient(120deg,#059669,#3b82f6);color:#fff;border:none;border-radius:10px;padding:10px 16px;font-weight:700}
+.explanation{margin-top:14px;padding:14px 12px;border-radius:12px;background:linear-gradient(96deg, rgba(16,185,129,.15) 40%, rgba(59,130,246,.08) 100%);color:#e7fff2;border:1px solid rgba(16,185,129,.28)}
+.explanation[aria-hidden="true"]{display:none}
+.explanation-text{font-size:1.06rem;line-height:1.9;color:#eafff1}
+.explanation-source{color:#bfe3ff;font-size:.92rem;margin-top:6px}
+
+/* Nav + progress */
+.nav-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:14px 0 0}
+.progress-wrap{height:8px;width:100%;background:rgba(255,255,255,.06);border-radius:9px;margin:12px 0 0}
+.progress{background:linear-gradient(90deg,#10b981,#3b82f6);height:100%;border-radius:9px;width:0;transition:width .25s cubic-bezier(.62,1.52,.37,.95)}
+
+/* Mobile */
+@media (max-width:700px){
+  .container{width:97%}
+  .card{padding:16px 10px}
+  .answer{padding:24px 10px}
 }
