@@ -1,15 +1,67 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>✈️ תיאוריה לטייס — תרגול שאלות</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
-  <script type="module" defer src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="app-header">…твой header…</header>
-  <main class="container app-main">…твой main с вопросами…</main>
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand" aria-label="לוגו ושם האתר">
+        <span class="brand-logo" aria-hidden="true">✈️</span>
+        <span class="brand-text">תיאוריה לטייס</span>
+      </div>
+      <div class="counter-section">
+        <span id="questionCounter" class="counter" aria-live="polite">—</span>
+        <div class="page-nav">
+          <label for="pageInput" class="sr-only">נווט לשאלה</label>
+          <input id="pageInput" type="number" min="1" placeholder="מספר" class="page-input">
+          <button id="goToBtn" class="btn btn-small" type="button">עבור</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container app-main">
+    <div class="controls">
+      <div class="search">
+        <label for="searchInput" class="sr-only">חיפוש</label>
+        <input id="searchInput" type="text" placeholder="חפש/י בשאלה או בתשובה…" autocomplete="off" />
+        <button id="searchBtn" class="btn btn-primary" type="button">חפש</button>
+      </div>
+    </div>
+
+    <section class="card question-card" aria-live="polite">
+      <h1 id="questionText" class="question" tabindex="0">טוען…</h1>
+
+      <div id="answerCard" class="answer" role="region" aria-labelledby="answerTitle">
+        <h2 id="answerTitle" class="sr-only">תשובה</h2>
+        <div id="answerText">—</div>
+      </div>
+
+      <button id="explanationBtn" class="explanation-btn" type="button">הסבר באמצעות AI</button>
+
+      <div id="explanation" class="explanation" aria-hidden="true">
+        <div class="explanation-content">
+          <div id="explanationText" class="explanation-text"></div>
+          <div id="explanationSource" class="explanation-source"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="nav-row">
+      <button id="prevBtn" class="btn btn-outline" type="button">קודם</button>
+      <button id="nextBtn" class="btn btn-primary" type="button">שאלה הבאה</button>
+    </div>
+
+    <div class="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <div id="progressBar" class="progress"></div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
