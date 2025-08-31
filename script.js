@@ -2,7 +2,7 @@
 
 // === API Keys and Endpoints ===
 // ⚠️ חשוב: הכנס את המפתח שלך כאן כדי להשתמש ב-API של ג'מיני.
-// החלף את 'AIzaSyAM2nVC5eLtukf3B1VxeyFCBQIu898N5QY' במפתח שלך.
+// החלף את 'AIzaSyD7xSUF7QrOTp_Rl8m21bBfX0A79aXXqFM' במפתח שלך.
 const GEMINI_API_KEY = "AIzaSyAM2nVC5eLtukf3B1VxeyFCBQIu898N5QY";
 const GEMINI_EXPLANATION_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent";
 const GEMINI_TTS_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent";
