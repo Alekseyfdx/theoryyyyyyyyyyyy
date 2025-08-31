@@ -1,46 +1,97 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>תרגול תיאוריה - חוקת אוויר</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>✈️ תיאוריה לטייס — תרגול שאלות</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>תרגול חוקת אוויר</h1>
-            <div class="theme-switcher">
-                <label class="switch">
-                    <input type="checkbox" id="theme-toggle">
-                    <span class="slider"></span>
-                </label>
-                <span id="theme-icon">☀️</span>
-            </div>
-        </header>
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">
+        <span class="brand-logo">✈️</span>
+        <span class="brand-text">תיאוריה לטייס</span>
+      </div>
+      <div class="counter-section">
+        <span id="questionCounter" class="counter"></span>
+        <div class="page-nav">
+          <input id="pageInput" type="number" min="1" placeholder="מספר" class="page-input">
+          <button id="goToBtn" class="btn btn-small">עבור</button>
+        </div>
+      </div>
+    </div>
+  </header>
 
-        <main class="card">
-            <div id="question-container">
-                <p id="question-text">טוען שאלה...</p>
-            </div>
-            <div id="answer-container">
-                <p id="answer-text"></p>
-            </div>
-            <button id="explain-btn" class="btn explain-btn" disabled>הסבר</button>
-            <div id="explanation-card" class="explanation-card hidden">
-                <p id="explanation-text"></p>
-            </div>
-        </main>
-
-        <footer>
-            <p id="progress-text">שאלה 0 מתוך 0</p>
-            <button id="next-btn" class="btn next-btn" disabled>השאלה הבאה</button>
-        </footer>
+  <main class="container app-main">
+    <!-- חיפוש -->
+    <div class="controls">
+      <div class="search">
+        <input id="searchInput" type="text" placeholder="חפש/י בשאלה או בתשובה…" />
+        <button id="searchBtn" class="btn btn-primary">חפש</button>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- כרטיס שאלה/תשובה -->
+    <section class="card glass" aria-live="polite">
+      <div id="questionText" class="question"></div>
+      <div id="answerCard" class="answer">
+        <div id="answerText"></div>
+      </div>
+      
+      <!-- כפתור הסבר -->
+      <button id="explanationBtn" class="explanation-btn">הסבר באמצעות AI</button>
+      
+      <!-- אזור ההסבר -->
+      <div id="explanation" class="explanation">
+        <div class="explanation-content">
+          <div id="explanationText" class="explanation-text"></div>
+          <div id="explanationSource" class="explanation-source"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ניווט -->
+    <div class="nav-row">
+      <button id="prevBtn" class="btn btn-outline" title="חזרה (חץ שמאל)">קודם</button>
+      <button id="nextBtn" class="btn btn-primary" title="קדימה (חץ ימין / Enter / רווח)">שאלה הבאה</button>
+    </div>
+
+    <!-- התקדמות -->
+    <div class="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+      <div id="progressBar" class="progress"></div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>© 2025 לימוד עצמי • תיאוריה לטייס</p>
+    </div>
+  </footer>
+
+  <!-- FAB: כפתור צ'אט עגול -->
+  <button id="chatBtn" class="fab" aria-label="פתח צ'אט עם AI">💬</button>
+
+  <!-- חלון צ'אט -->
+  <div id="chatWindow" class="chat" aria-hidden="true">
+    <div class="chat-head">
+      <div class="chat-title">בוט AI</div>
+      <button id="chatClose" class="icon-btn" aria-label="סגור">✕</button>
+    </div>
+    <div id="chatMessages" class="chat-body">
+      <div class="msg bot">
+        <div class="avatar">🤖</div>
+        <div class="bubble">היי! שאל/י כל דבר על תעופה. אענה עניינית וברורה. אם חסר משהו—אשאל הבהרה קצרה.</div>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input id="chatInput" type="text" placeholder="הקלד/י שאלה…" />
+      <button id="chatSend" class="btn btn-primary btn-send">שלח</button>
+    </div>
+    <div id="loadingSpinner" class="chat-loading" hidden>טוען…</div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
