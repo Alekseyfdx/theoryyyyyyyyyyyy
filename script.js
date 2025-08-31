@@ -1,7 +1,4 @@
-// === מקור נתונים (JSON: {questions:[...]} או מערך ישיר) ===
 const DATA_URL = 'questions.json';
-
-
 const API_KEY = 'AIzaSyD7xSUF7QrOTp_Rl8m21bBfX0A79aXXqFM'; // מפתח ה-API החדש שסיפקת
 const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`; // נקודת קצה מעודכנת ל-gemini-2.0-flash
 
