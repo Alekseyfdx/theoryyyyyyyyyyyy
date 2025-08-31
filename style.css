@@ -1,41 +1,65 @@
-/* ==== Ответ: answer ==== */
+/* Reset and baseline */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Rubik', sans-serif;
+  background: radial-gradient(1200px 800px at 10% 0%, rgba(110,36,210,0.35), transparent 60%), radial-gradient(1000px 800px at 100% 100%, rgba(14,165,233,0.35), transparent 60%), linear-gradient(180deg, #0f172a, #1e293b);
+  color: #eef2ff;
+  line-height: 1.6;
+  direction: rtl;
+}
+
+/* Container centering */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+/* Header & navigation styling omitted for brevity... */
+
+/* Question card */
+.question-card {
+  margin-top: 24px;
+  padding: 24px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 16px;
+}
+
+/* Answer styling — крупно и узнаваемо */
 .answer {
-  margin-top: 28px !important;
-  margin-bottom: 18px !important;
-  font-size: 1.38em !important;
-  font-weight: 700 !important;
-  background: linear-gradient(96deg, rgba(18,30,65,0.45) 70%, rgba(16,185,129,0.14) 100%);
-  border-radius: 18px !important;
-  padding: 26px 16px 26px 16px !important;
-  box-shadow: 0 2px 18px rgba(59,130,246,0.13);
-  color: #fff !important;
-  line-height: 2.1;
+  margin: 28px 0;
+  padding: 28px 16px;
+  font-size: 2em;
+  font-weight: 700;
+  background: linear-gradient(95deg, rgba(18,30,65,0.5) 72%, rgba(16,185,129,0.15) 100%);
+  border-radius: 20px;
+  box-shadow: 0 4px 22px rgba(59,130,246,0.14);
+  line-height: 2.2;
+  text-align: right;
   word-break: break-word;
-  letter-spacing: 0.3px;
-  transition: font-size 0.18s;
 }
 
-/* Для мобильных сделать ещё крупнее и мягче! */
-@media (max-width: 600px) {
-  .answer {
-    font-size: 1.19em !important;
-    padding: 23px 8px 23px 8px !important;
-    margin-top: 24px !important;
-    margin-bottom: 14px !important;
-  }
-}
-
-/* ==== AI-объяснение ==== */
+/* Explanation styling */
 .explanation {
-  margin-top: 18px;
-  font-size: 1.11em;
-  font-weight: 400;
-  background: linear-gradient(96deg, rgba(16,185,129,0.15) 40%, rgba(59,130,246,0.06) 100%);
-  color: #e0ffe5;
-  border-radius: 13px;
-  padding: 18px 13px 13px 13px;
-  box-shadow: 0 2px 11px rgba(16,185,129,0.10);
-  line-height: 1.9;
+  margin-top: 20px;
+  padding: 18px 14px;
+  font-size: 1.1em;
+  background: linear-gradient(95deg, rgba(16,185,129,0.15) 40%, rgba(59,130,246,0.06) 100%);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(16,185,129,0.1);
+  line-height: 1.8;
 }
 
-.explanation[aria-hidden="true"] { display: none; }
+/* Responsive typography */
+@media (max-width: 600px) {
+  .answer { font-size: 2.5em; padding: 24px 12px; }
+  .explanation { font-size: 1.2em; padding: 16px 10px; }
+}
+
+/* Flex centering for card */
+.question-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Center text horizontally on mobile */
+@media (max-width: 600px) {
+  .question, .answer { text-align: center; }
+}
