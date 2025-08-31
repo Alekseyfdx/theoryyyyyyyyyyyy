@@ -1,5 +1,4 @@
 // Pilot Theory Trainer — יוליה ✈️
-// === Config ===
 const DATA_URL = 'questions.json';
 const GEMINI_API_KEY = 'AIzaSyDYGe_wmTgu8hszDhnLB2qlEz5l-fKtscM';
 const GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
@@ -64,11 +63,9 @@ $('explanationBtn').onclick = async () => {
   // Gemini API integration
   try {
     const prompt = `הסבר בקצרה (עד 5 שורות) לשאלה במבחן תיאוריה לטייס בישראל: \n"${q.question}"\nתשובה נכונה: ${q.answer}\nהסבר:`;
-    const res = await fetch(GEMINI_ENDPOINT + '?key=' + GEMINI_API_KEY, {
+    const res = await fetch(GEMINI_ENDPOINT + '?key=' + AIzaSyDYGe_wmTgu8hszDhnLB2qlEz5l-fKtscM, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         contents: [
           { parts: [ { text: prompt } ] }
