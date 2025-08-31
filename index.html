@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>✈️ תיאוריה לטייס — תרגול שאלות</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="app-header">
@@ -26,27 +26,23 @@
   </header>
 
   <main class="container app-main">
-<!-- חיפוש -->
     <div class="controls">
       <div class="search">
         <label for="searchInput" class="sr-only">חיפוש</label>
-        <input id="searchInput" type="text" placeholder="חפש/י בשאלה או בתשובה…" autocomplete="off" />
+        <input id="searchInput" type="text" placeholder="חפש/י בשאלה או בתשובה…" autocomplete="off">
         <button id="searchBtn" class="btn btn-primary" type="button">חפש</button>
       </div>
     </div>
 
-<!-- כרטיס שאלה/תשובה -->
-    <section class="card glass" aria-live="polite">
+    <section class="card glass question-card" aria-live="polite">
       <h1 id="questionText" class="question" tabindex="0"></h1>
       <div id="answerCard" class="answer" role="region" aria-labelledby="answerTitle">
         <h2 id="answerTitle" class="sr-only">תשובה</h2>
         <div id="answerText"></div>
       </div>
 
-<!-- כפתור הסבר -->
       <button id="explanationBtn" class="explanation-btn" type="button">הסבר באמצעות AI</button>
 
-<!-- אזור ההסבר -->
       <div id="explanation" class="explanation" aria-hidden="true">
         <div class="explanation-content">
           <div id="explanationText" class="explanation-text"></div>
@@ -55,17 +51,16 @@
       </div>
     </section>
 
-<!-- ניווט -->
     <div class="nav-row">
       <button id="prevBtn" class="btn btn-outline" type="button" title="חזרה (חץ שמאל)">קודם</button>
       <button id="nextBtn" class="btn btn-primary" type="button" title="קדימה (חץ ימין / Enter / רווח)">שאלה הבאה</button>
     </div>
 
-<!-- התקדמות -->
     <div class="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100">
       <div id="progressBar" class="progress"></div>
     </div>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
