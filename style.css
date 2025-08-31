@@ -1,36 +1,41 @@
 /* ==== Ответ: answer ==== */
 .answer {
-  margin-top: 22px;
-  font-size: 1.25em;
-  font-weight: 600;
-  background: linear-gradient(96deg, rgba(18,30,65,0.4) 70%, rgba(16,185,129,0.10) 100%);
-  border-radius: 14px;
-  padding: 22px 16px 18px 16px;
-  box-shadow: 0 2px 16px rgba(59,130,246,0.09);
-  color: #fff;
-  line-height: 1.8;
+  margin-top: 28px !important;
+  margin-bottom: 18px !important;
+  font-size: 1.38em !important;
+  font-weight: 700 !important;
+  background: linear-gradient(96deg, rgba(18,30,65,0.45) 70%, rgba(16,185,129,0.14) 100%);
+  border-radius: 18px !important;
+  padding: 26px 16px 26px 16px !important;
+  box-shadow: 0 2px 18px rgba(59,130,246,0.13);
+  color: #fff !important;
+  line-height: 2.1;
   word-break: break-word;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.3px;
+  transition: font-size 0.18s;
 }
 
-@media (max-width: 700px) {
+/* Для мобильных сделать ещё крупнее и мягче! */
+@media (max-width: 600px) {
   .answer {
-    font-size: 1.15em;
-    padding: 18px 10px 13px 10px;
+    font-size: 1.19em !important;
+    padding: 23px 8px 23px 8px !important;
+    margin-top: 24px !important;
+    margin-bottom: 14px !important;
   }
 }
 
 /* ==== AI-объяснение ==== */
 .explanation {
-  margin-top: 15px;
+  margin-top: 18px;
   font-size: 1.11em;
   font-weight: 400;
   background: linear-gradient(96deg, rgba(16,185,129,0.15) 40%, rgba(59,130,246,0.06) 100%);
   color: #e0ffe5;
-  border-radius: 12px;
-  padding: 16px 13px 11px 13px;
-  box-shadow: 0 2px 10px rgba(16,185,129,0.13);
-  line-height: 1.75;
+  border-radius: 13px;
+  padding: 18px 13px 13px 13px;
+  box-shadow: 0 2px 11px rgba(16,185,129,0.10);
+  line-height: 1.9;
 }
 
 .explanation[aria-hidden="true"] { display: none; }
